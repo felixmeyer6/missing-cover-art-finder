@@ -36,21 +36,20 @@ DISCOGS_TOKEN = "your_token_here"
 ```
 
 ### Usage
-Run the script to begin the two-phase processing:
 ```bash
 python find-missing-covers.py
 ```
 
-## 🧠 The Workflow
+## 🧠 How it works
 
 ### 1. 🔍 Metadata Extraction
 Uses `mutagen` to extract `artist` and `title` tags. If tags are missing, the file is skipped. It specifically checks for existing `APIC` frames to avoid overwriting existing art.
 
-### 2. 🎛️ Discogs Search Logic
+### 2. 🎛️ Discogs Search
 *   **Exact Matching:** Queries the API using specific `artist` and `track` filters.
 *   **Manual Refinement:** Performs a broad-string search. It retrieves the top 5 results, extracting the Title, Year, and Label to help you identify the correct release.
 
-### 3. 🖼️ Image Optimization (Pillow)
+### 3. 🖼️ Image Processing
 Once a URL is retrieved, the image is processed in memory:
 *   **Aspect Ratio Correction:** Performs a center-crop to ensure a perfect square.
 *   **Format Standardization:** Converts `RGBA` or `P` (indexed) modes to `RGB` and exports as JPEG.
